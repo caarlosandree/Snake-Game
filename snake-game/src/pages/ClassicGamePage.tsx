@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useClassicGame } from '@/hooks/useClassicGame';
 import { useRecords } from '@/hooks/useRecords';
@@ -63,11 +63,11 @@ const ClassicGamePage: React.FC = () => {
     ? Math.max(0, Math.floor((gameState.food.expiresAt - Date.now()) / 1000))
     : 0;
 
-  const handleBackToMenu = () => {
+  const handleBackToMenu = useCallback(() => {
     resetGame();
     setGameStartTime(0);
     navigate('/');
-  };
+  }, [resetGame, navigate]);
 
   const handleSaveRecord = () => {
     if (playerName && finalScore > 0) {
@@ -81,11 +81,11 @@ const ClassicGamePage: React.FC = () => {
     handleBackToMenu();
   };
 
-  const handlePlayAgain = () => {
+  const handlePlayAgain = useCallback(() => {
     setShowGameOverModal(false);
     resetGame();
     setGameStartTime(0);
-  };
+  }, [resetGame]);
 
   // Controles de teclado adicionais
   useEffect(() => {
@@ -113,7 +113,7 @@ const ClassicGamePage: React.FC = () => {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [gameState.gameOver, gameState.gameStarted, pauseGame, startGame]);
+  }, [gameState.gameOver, gameState.gameStarted, pauseGame, startGame, handleBackToMenu, handlePlayAgain]);
 
   if (!playerName) {
     return (

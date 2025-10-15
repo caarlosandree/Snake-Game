@@ -47,8 +47,8 @@
   align-items: center;
   justify-content: center;
   z-index: 150;
-  backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 .start-content {
@@ -150,8 +150,8 @@
   align-items: center;
   justify-content: center;
   z-index: 200;
-  backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 .modal-content {
