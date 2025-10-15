@@ -1,5 +1,5 @@
 import React from 'react';
-import { Direction } from '../types/game';
+import { Direction } from '@/types/game';
 
 interface GameControlsProps {
   onDirectionChange: (direction: Direction) => void;

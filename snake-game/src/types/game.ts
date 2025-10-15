@@ -1,3 +1,11 @@
+export interface GameConfig {
+  boardWidth: number;
+  boardHeight: number;
+  cellSize: number;
+  initialSpeed: number;
+  speedIncrement: number;
+}
+
 export interface Position {
   x: number;
   y: number;
@@ -22,12 +30,4 @@ export interface GameState {
   gameOver: boolean;
   gameStarted: boolean;
   gamePaused: boolean;
-}
-
-export interface GameConfig {
-  boardWidth: number;
-  boardHeight: number;
-  cellSize: number;
-  initialSpeed: number;
-  speedIncrement: number;
 }

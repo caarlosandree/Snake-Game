@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import type { Position, Snake } from '../types/game';
+import type { Position, Snake } from '@/types/game';
 import './GameBoard.css';
 
 interface GameBoardProps {

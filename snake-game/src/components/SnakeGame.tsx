@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGame } from '../hooks/useGame';
+import { useGame } from '@/hooks/useGame';
 import GameBoard from './GameBoard';
 import GameControls from './GameControls';
 import GameInfo from './GameInfo';

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { GameState, Direction, Position, Snake, GameConfig } from '../types/game';
+import { Direction } from '@/types/game';
+import type { GameState, Position, Snake, GameConfig } from '@/types/game';
 
 const GAME_CONFIG: GameConfig = {
   boardWidth: 20,
@@ -40,7 +41,7 @@ export const useGame = () => {
     gamePaused: false
   });
 
-  const gameLoopRef = useRef<number>();
+  const gameLoopRef = useRef<number | undefined>(undefined);
   const speedRef = useRef(GAME_CONFIG.initialSpeed);
 
   const resetGame = useCallback(() => {
