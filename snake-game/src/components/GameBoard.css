@@ -1,0 +1,51 @@
+.game-board {
+  position: relative;
+  background: #1a1a2e;
+  border: 4px solid #16213e;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: attr(data-width);
+  height: attr(data-height);
+}
+
+.cell {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.1s ease;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  left: calc(var(--cell-size) * attr(data-x));
+  top: calc(var(--cell-size) * attr(data-y));
+}
+
+.snake-head {
+  background: linear-gradient(45deg, #00ff88, #00cc6a);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+  border: 2px solid #00ff88;
+}
+
+.snake-body {
+  background: linear-gradient(45deg, #00cc6a, #00aa55);
+  border-radius: 30%;
+  border: 1px solid #00aa55;
+}
+
+.food {
+  background: linear-gradient(45deg, #ff4757, #ff3742);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(255, 71, 87, 0.7);
+  border: 2px solid #ff4757;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(255, 71, 87, 0.7);
+  }
+  to {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 71, 87, 1);
+  }
+}
