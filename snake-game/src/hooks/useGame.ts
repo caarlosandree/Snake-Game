@@ -1,13 +1,14 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Direction } from '@/types/game';
-import type { GameState, Position, Snake, GameConfig } from '@/types/game';
+import type { GameState, Position, Snake, GameConfig, Food } from '@/types/game';
 
 const GAME_CONFIG: GameConfig = {
   boardWidth: 20,
   boardHeight: 20,
   cellSize: 20,
   initialSpeed: 150,
-  speedIncrement: 5
+  speedIncrement: 5,
+  foodTimeout: 12
 };
 
 const createInitialSnake = (): Snake => ({
@@ -19,39 +20,50 @@ const createInitialSnake = (): Snake => ({
   direction: Direction.RIGHT
 });
 
-const generateFood = (snakeBody: Position[], boardWidth: number, boardHeight: number): Position => {
-  let food: Position;
+const generateFood = (snakeBody: Position[], boardWidth: number, boardHeight: number): Food => {
+  let position: Position;
   do {
-    food = {
+    position = {
       x: Math.floor(Math.random() * boardWidth),
       y: Math.floor(Math.random() * boardHeight)
     };
-  } while (snakeBody.some(segment => segment.x === food.x && segment.y === food.y));
+  } while (snakeBody.some(segment => segment.x === position.x && segment.y === position.y));
   
-  return food;
+  return {
+    position,
+    expiresAt: Date.now() + GAME_CONFIG.foodTimeout * 1000,
+    isActive: true
+  };
 };
 
 export const useGame = () => {
   const [gameState, setGameState] = useState<GameState>({
     snake: createInitialSnake(),
-    food: { x: 15, y: 15 },
+    food: {
+      position: { x: 15, y: 15 },
+      expiresAt: Date.now() + GAME_CONFIG.foodTimeout * 1000,
+      isActive: true
+    },
     score: 0,
     gameOver: false,
     gameStarted: false,
-    gamePaused: false
+    gamePaused: false,
+    gameTime: 0
   });
 
   const gameLoopRef = useRef<number | undefined>(undefined);
   const speedRef = useRef(GAME_CONFIG.initialSpeed);
 
   const resetGame = useCallback(() => {
+    const initialSnake = createInitialSnake();
     setGameState({
-      snake: createInitialSnake(),
-      food: generateFood(createInitialSnake().body, GAME_CONFIG.boardWidth, GAME_CONFIG.boardHeight),
+      snake: initialSnake,
+      food: generateFood(initialSnake.body, GAME_CONFIG.boardWidth, GAME_CONFIG.boardHeight),
       score: 0,
       gameOver: false,
       gameStarted: false,
-      gamePaused: false
+      gamePaused: false,
+      gameTime: 0
     });
     speedRef.current = GAME_CONFIG.initialSpeed;
   }, []);
@@ -128,7 +140,7 @@ export const useGame = () => {
       newBody.unshift(head);
 
       // Verificar se comeu a comida
-      if (head.x === food.x && head.y === food.y) {
+      if (head.x === food.position.x && head.y === food.position.y) {
         const newScore = score + 10;
         const newFood = generateFood(newBody, GAME_CONFIG.boardWidth, GAME_CONFIG.boardHeight);
         

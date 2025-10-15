@@ -24,7 +24,7 @@ const SnakeGame: React.FC = () => {
           
           <GameBoard
             snake={gameState.snake}
-            food={gameState.food}
+            food={gameState.food.position}
             boardWidth={config.boardWidth}
             boardHeight={config.boardHeight}
             cellSize={config.cellSize}

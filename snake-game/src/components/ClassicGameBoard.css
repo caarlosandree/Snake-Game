@@ -1,0 +1,67 @@
+.classic-game-board {
+  position: fixed;
+  top: 100px; /* Altura real da navbar (padding 12px + conteúdo ~76px) */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  overflow: hidden;
+  width: 100vw;
+  height: calc(100vh - 100px);
+  margin: 0;
+  padding: 0;
+}
+
+.game-canvas {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: #1f2937;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Efeitos visuais */
+.game-canvas:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .classic-game-board {
+    top: 140px; /* Navbar maior em mobile */
+    height: calc(100vh - 140px);
+  }
+}
+
+@media (max-width: 480px) {
+  .classic-game-board {
+    top: 180px; /* Navbar ainda maior em telas pequenas */
+    height: calc(100vh - 180px);
+    padding: 8px;
+  }
+  
+  .game-canvas {
+    border-radius: 4px;
+  }
+}
+
+/* Modo de tela cheia */
+.classic-game-board.fullscreen {
+  top: 0;
+}
+
+.classic-game-board.fullscreen .game-canvas {
+  border-radius: 0;
+  border: none;
+}

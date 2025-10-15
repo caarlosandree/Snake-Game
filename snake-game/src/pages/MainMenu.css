@@ -1,0 +1,182 @@
+.main-menu {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.menu-container {
+  background: rgba(15, 23, 42, 0.8);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 48px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.game-title {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 16px 0;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.game-subtitle {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  margin: 0;
+  font-weight: 400;
+}
+
+.menu-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.menu-section h2 {
+  color: #e2e8f0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  text-align: center;
+  position: relative;
+}
+
+.menu-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 2px;
+}
+
+.menu-buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.menu-btn {
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.menu-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.menu-btn:hover::before {
+  left: 100%;
+}
+
+.menu-btn.primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-btn.primary:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.menu-btn.secondary {
+  background: rgba(55, 65, 81, 0.6);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-btn.secondary:hover {
+  background: rgba(75, 85, 99, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.menu-footer {
+  text-align: center;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-footer p {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .menu-container {
+    padding: 32px 24px;
+    margin: 20px;
+  }
+  
+  .game-title {
+    font-size: 2.5rem;
+  }
+  
+  .game-subtitle {
+    font-size: 1rem;
+  }
+  
+  .menu-btn {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-menu {
+    padding: 10px;
+  }
+  
+  .menu-container {
+    padding: 24px 16px;
+  }
+  
+  .game-title {
+    font-size: 2rem;
+  }
+  
+  .menu-navigation {
+    gap: 24px;
+  }
+}
